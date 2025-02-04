@@ -1,0 +1,12 @@
+struct User {
+    uint256 lastWithdrawalTime;
+    uint256 withdrawalRequest;
+    bool isBusiness;
+    bool isWithdrawalApproved;
+} // Removed 'balance' from User struct
+
+function requestWithdrawal(uint256 amount, address token) public {
+    User storage user = users[msg.sender];
+    require(userTokenBalances[msg.sender][token] >= amount, "Insufficient balance");
+    // ... adjust logic for ERC20 ...
+}
