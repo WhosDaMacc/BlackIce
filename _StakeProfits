@@ -1,0 +1,9 @@
+function deposit(address token, uint256 amount) public {
+    // ... existing code ...
+    _stakeProfits(token, treasuryStake); // Pass the token address
+}
+
+function _stakeProfits(address token, uint256 amount) internal {
+    userTokenBalances[glacierTreasury][token] += amount;
+    // ... existing code ...
+}
