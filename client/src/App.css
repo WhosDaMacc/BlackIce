@@ -1,0 +1,26 @@
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.wallet-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.wallet-address {
+  color: #666;
+}
+
+.balance {
+  margin: 20px 0;
+}
+
+.status-section {
+  margin-top: 40px;
+}
