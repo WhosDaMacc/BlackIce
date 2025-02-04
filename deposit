@@ -1,0 +1,16 @@
+function deposit(address token, uint256 amount) public {
+    IERC20(token).transferFrom(msg.sender, address(this), amount);
+    userTokenBalances[msg.sender][token] += amount;
+
+    // Calculate profit share (20% of deposited amount)
+    uint256 profitShare = amount.mul(20).div(100); 
+
+    // Calculate Glacier Treasury's stake (10% of the profit share)
+    uint256 treasuryStake = profitShare.mul(10).div(100); 
+
+    // Deduct the treasury stake from the user's balance
+    userTokenBalances[msg.sender][token] -= treasuryStake;
+
+    // Stake the treasury's share (2% of deposited amount)
+    _stakeProfits(token, treasuryStake); 
+}
