@@ -9,3 +9,15 @@ module.exports = {
     },
   },
 };
+require('@nomiclabs/hardhat-ethers');
+require("dotenv").config();
+
+module.exports = {
+  solidity: "0.8.0",
+  networks: {
+    polygon: {
+      url: process.env.POLYGON_URL,  // QuickNode URL
+      accounts: [`0x${process.env.PRIVATE_KEY}`],  // Private key for deployment
+    },
+  },
+};
