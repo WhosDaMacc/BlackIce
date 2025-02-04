@@ -33,3 +33,14 @@ module.exports = {
     },
   },
 };
+require('@nomiclabs/hardhat-etherscan');
+
+module.exports = {
+  solidity: "0.8.0",  // or whatever version of Solidity you're using
+  networks: {
+    // configure networks like Polygon here
+  },
+  etherscan: {
+    apiKey: "YOUR_ETHERSCAN_API_KEY"  // Replace with your Etherscan API key
+  }
+};
