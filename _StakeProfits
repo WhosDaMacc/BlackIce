@@ -7,3 +7,11 @@ function _stakeProfits(address token, uint256 amount) internal {
     userTokenBalances[glacierTreasury][token] += amount;
     // ... existing code ...
 }
+mapping(address => mapping(address => uint256)) public tokenDepositTime; // Add this line
+
+function _stakeProfits(address token, uint256 amount) internal {
+    userTokenBalances[glacierTreasury][token] += amount;
+    tokenDepositTime[glacierTreasury][token] = block.timestamp; // Track deposit time
+    totalProfitsStaked = totalProfitsStaked.add(amount);
+    emit ProfitsStaked(msg.sender, amount);
+}
