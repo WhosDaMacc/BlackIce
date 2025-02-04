@@ -47,3 +47,18 @@ function distributeProfits(address user, uint256 totalProfit, address token) pub
     // Transfer remaining amount to user
     userTokenBalances[user][token] += finalUserAmount;
 }
+function distributeProfits() public {
+    require(block.timestamp >= lastDistributionTime + 1 days, "Distribution already done today");
+
+    uint256 totalProfits = calculateTotalProfits(); // Implement this function to get the total profits
+    uint256 treasuryShare = (totalProfits * 10) / 100; // 10% of profit share
+    uint256 userShare = totalProfits - treasuryShare; 
+
+    // Transfer to Glacier Treasury
+    IERC20(tokenAddress).transfer(glacierTreasury, treasuryShare);
+
+    // Distribute remaining to users (implement distribution logic)
+    distributeToUsers(userShare);
+
+    lastDistributionTime = block.timestamp;
+}
