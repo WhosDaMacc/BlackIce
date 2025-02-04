@@ -147,3 +147,17 @@ contract GlacierNetwork is Ownable {
         return block.timestamp + STAKING_LOCK_TIME;
     }
 }
+function distributeProfits(address user, uint256 totalProfit, address token) public onlyOwner {
+    require(totalProfit > 0, "No profit to distribute");
+
+    uint256 userShare = (totalProfit * 20) / 100; // 20% of the profit to user
+    uint256 treasuryShare = (userShare * 10) / 100; // 10% of the 20% goes to Glacier Treasury
+    uint256 finalUserAmount = userShare - treasuryShare; // Remaining amount for user
+
+    // Transfer to Glacier Treasury
+    userTokenBalances[GLACIER_TREASURY][token] += treasuryShare;
+    tokenDepositTime[GLACIER_TREASURY][token] = block.timestamp; // Store deposit time
+
+    // Transfer remaining amount to user
+    userTokenBalances[user][token] += finalUserAmount;
+}
