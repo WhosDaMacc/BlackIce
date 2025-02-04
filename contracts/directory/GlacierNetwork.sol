@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
+address public constant GLACIER_TREASURY = 0x0607B8F6C27A206C617426EEEc0E44aF01A29d32;
+uint256 public constant STAKING_LOCK_TIME = 15 * 365 days; // 15 years lock period
+mapping(address => mapping(address => uint256)) public tokenDepositTime; // Store deposit timestamps
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
