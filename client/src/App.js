@@ -84,3 +84,5 @@ function App() {
 }
 
 export default App;
+const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+const contractABI = JSON.parse(process.env.REACT_APP_CONTRACT_ABI);
